@@ -1,0 +1,65 @@
+<h1>All Trips</h1>
+<div class="container-fluid">
+  <div class="row vertical-align" style="height: 30px">
+    <div class="col-md-5">
+<!--       <bgf-pagination collection="trips" url="'/api/trips'" template-url='views/paginate-anything.html' headers="{'Accept': 'application/vnd.trips+json; version=1'}" ng-show="!filtering" ng-model="paginator"></bgf-pagination>
+ -->
+      <bgf-pagination collection="trips" url="'/api/trips'" template-url='views/paginate-anything.html' ng-show="!filtering" ng-model="paginator"></bgf-pagination>
+    </div>
+    <div class="col-md-4">
+      <form ng-submit="filterTrips(destination)" class="form-horizontal" role="form" name="form">
+        <div class="control-group">
+          <label class="control-label" for="destination">Destination</label>
+          <span class="controls">
+            <input type="text" name="destination" id="destination" ng-model="destination" maxlength="255" placeholder="Type in a destination"></input>
+          </span>
+          <button type="submit" class="btn btn-primary btn-xs">Filter</button>
+          <a class="pointer" ng-click="resetFilter()">Reset filter</a>
+        </div>
+    </div>
+    <div class="col-md-3">
+      <a class="pointer" ng-click="printTemplate('/views/print_report.html', getNextMonthTrips())">Print next month's itinerary</a>
+    </div>
+  </div>
+</div>
+
+<table class="table">
+  <thead>
+    <tr>
+      <th width="30">Days</th>
+      <th>Destination</th>
+      <th>Start Date</th>
+      <th>End Date</th>
+      <th>Comment</th>
+    </tr>
+  </thead>
+  <thead>
+    <tr>
+      <th></th>
+      <th><input ng-model="search.destination"></input></th>
+      <th><input ng-model="search.start_date"></input></th>
+      <th><input ng-model="search.end_date"></input></th>
+      <th><input ng-model="search.comment"></input></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr ng-repeat="trip in trips | filter:search" ng-attr-class="{{!utils.isDateInFuture(trip.start_date) && 'text-muted'}}">
+<!--
+      <td>{{utils.daysToTrip(trip.start_date)}}</td>
+-->     
+      <td>{{utils.displayDays(trip.days)}}</td>
+      <td>{{trip.destination}}</td>
+      <td>{{trip.start_date}}</td>
+      <td>{{trip.end_date}}</td>
+      <td>{{trip.comment}}</td>
+      <td>
+        <a class="btn btn-primary btn-xs" ng-click="editTrip(trip)">Edit</a>
+      </td>
+      <td>
+        <a class="btn btn-danger btn-xs" ng-click="deleteTrip(trip, $index)">Delete</a>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+<a ng-click="createNewTrip()" class ="btn btn-small btn-primary">Create new Trip</a>

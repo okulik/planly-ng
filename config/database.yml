@@ -1,0 +1,20 @@
+default: &default
+  adapter: postgresql
+  encoding: unicode
+  pool: 5
+  host: localhost
+  username: planly
+  password:
+  min_messages: error
+
+development:
+  <<: *default
+  database: planly_development
+
+test:
+  <<: *default
+  database: planly_test
+
+production:
+  <<: *default
+  database: planly

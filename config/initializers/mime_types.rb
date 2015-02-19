@@ -1,0 +1,1 @@
+Mime::Type.register 'application/vnd.trips+json', :trips_json

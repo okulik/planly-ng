@@ -1,0 +1,19 @@
+<h1>Next Month's Trips</h1>
+<table class="table">
+  <thead>
+    <tr>
+      <th>Destination</th>
+      <th>Start Date</th>
+      <th>End Date</th>
+      <th>Comment</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr ng-repeat="trip in trips">
+      <td>{{trip.destination}}</td>
+      <td>{{trip.start_date}}</td>
+      <td>{{trip.end_date}}</td>
+      <td>{{trip.comment}}</td>
+    </tr>
+  </tbody>
+</table>
