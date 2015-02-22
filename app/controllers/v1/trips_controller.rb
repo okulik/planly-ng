@@ -38,7 +38,7 @@ module V1
     # POST /trips
     # POST /trips.json
     def create
-      @trip = Trip.new(trip_params)
+      @trip = Trip.new(trip_params.merge(user_id: current_user.id))
 
       respond_to do |format|
         format.any(:trips_json, :json) do
