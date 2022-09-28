@@ -27,3 +27,5 @@ curl -v -X GET "http://localhost:3000/api/trips/filter?destination=wi" -H "Accep
 
 ## Get next month's trips
 curl -v -X GET "http://localhost:3000/api/trips/next_month" -H "Accept: application/vnd.trips+json; version=1" -H "Access-Token: 8dnfPFS7V_kNyVongz0Xdg" -H "Token-Type: Bearer" -H "Client: Lkw2KoHnE4o827mpT_iZ7w" -H "Expiry: 1425486951" -H "Uid: one@example.com"
+
+TL;DR
